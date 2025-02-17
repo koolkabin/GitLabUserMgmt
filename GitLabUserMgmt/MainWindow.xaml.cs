@@ -20,6 +20,7 @@ namespace GitLabUserMgmt
         public MainWindow()
         {
             InitializeComponent();
+            GITLAB_HOST = "https://gitlab.com";
             //(GITLAB_TOKEN, OWNER_USERNAME, GITLAB_HOST) = LoadConfiguration();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GITLAB_TOKEN);
         }
@@ -38,7 +39,7 @@ namespace GitLabUserMgmt
                 MessageBox.Show("Please enter a owner user.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            GITLAB_TOKEN = TokenTextBox.Text.Trim();
+            GITLAB_TOKEN = TokenTextBox.Password.Trim();
             if (string.IsNullOrEmpty(usernameToRemove))
             {
                 MessageBox.Show("Please enter a valid Personal Access Token.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);

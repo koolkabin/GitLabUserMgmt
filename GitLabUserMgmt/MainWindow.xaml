@@ -29,7 +29,7 @@
 
                     <DockPanel Grid.Column="3">
                         <TextBlock DockPanel.Dock="Top" Text="Enter GitLab Token:" Margin="10,10,0,0"/>
-                        <TextBox x:Name="TokenTextBox" Width="250" Height="26" Margin="10,0,0,0" />
+                        <PasswordBox x:Name="TokenTextBox" Width="250" Height="26" Margin="10,0,0,0" />
                     </DockPanel>
 
                     <DockPanel Grid.Column="4" LastChildFill="False">
