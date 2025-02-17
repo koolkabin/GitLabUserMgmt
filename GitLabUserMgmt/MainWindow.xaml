@@ -1,0 +1,38 @@
+﻿<Window x:Class="GitLabUserMgmt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GitLab User Remover" Height="400" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="75px" Height="10*"></RowDefinition>
+            <RowDefinition Height="35*"></RowDefinition>
+            <RowDefinition Height="45*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Text="Enter GitLab Username to Remove:" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="UsernameTextBox" Width="250" Height="26" Margin="10,32,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Button  Grid.Row="0" Content="Remove User" Width="150" Height="30" Margin="265,32,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="RemoveUser_Click"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top" Text="Success List" Margin="10,0,0,0" 
+                       VerticalAlignment="Top" >
+                </TextBlock>
+
+                <ListBox DockPanel.Dock="Bottom" x:Name="SuccessListBox" 
+                             MinHeight="100px" 
+                             MaxHeight="400px" 
+                             Margin="10,0,0,10"/>
+            </DockPanel>
+
+        </Grid>
+        <Grid Grid.Row="2">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top" Text="Failed List" Margin="10,0,0,0" VerticalAlignment="Top" />
+                <ListBox x:Name="FailedListBox" Margin="10,0,0,10" MinHeight="100px" MaxHeight="900px"/>
+
+            </DockPanel>
+
+        </Grid>
+    </Grid>
+</Window>
