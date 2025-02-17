@@ -9,9 +9,35 @@
             <RowDefinition Height="45*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <TextBlock Text="Enter GitLab Username to Remove:" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="UsernameTextBox" Width="250" Height="26" Margin="10,32,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <Button  Grid.Row="0" Content="Remove User" Width="150" Height="30" Margin="265,32,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="RemoveUser_Click"/>
+            <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="1">
+                        <TextBlock DockPanel.Dock="Top" Text="Enter GitLab Username to Remove:" Margin="10,10,0,0" />
+                        <TextBox x:Name="UsernameTextBox" Width="250" Height="26" Margin="10,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="2">
+                        <TextBlock DockPanel.Dock="Top" Text="Enter GitLab Owner Username:" Margin="10,10,0,0"/>
+                        <TextBox x:Name="OwnerTextBox" Width="250" Height="26" Margin="10,0,0,0" />
+                    </DockPanel>
+
+                    <DockPanel Grid.Column="3">
+                        <TextBlock DockPanel.Dock="Top" Text="Enter GitLab Token:" Margin="10,10,0,0"/>
+                        <TextBox x:Name="TokenTextBox" Width="250" Height="26" Margin="10,0,0,0" />
+                    </DockPanel>
+
+                    <DockPanel Grid.Column="4" LastChildFill="False">
+                        <Button Content="Remove User" Width="150" Height="30" Margin="10,0,0,10" Click="RemoveUser_Click" VerticalAlignment="Bottom"/>
+                    </DockPanel>
+
+                </Grid>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
             <DockPanel>

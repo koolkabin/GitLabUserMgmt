@@ -12,15 +12,15 @@ namespace GitLabUserMgmt
 {
     public partial class MainWindow : Window
     {
-        private readonly string GITLAB_TOKEN;
-        private readonly string GITLAB_HOST;
-        private readonly string OWNER_USERNAME;
+        private string GITLAB_TOKEN;
+        private string GITLAB_HOST;
+        private string OWNER_USERNAME;
         private readonly HttpClient client = new HttpClient();
 
         public MainWindow()
         {
             InitializeComponent();
-            (GITLAB_TOKEN, OWNER_USERNAME, GITLAB_HOST) = LoadConfiguration();
+            //(GITLAB_TOKEN, OWNER_USERNAME, GITLAB_HOST) = LoadConfiguration();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GITLAB_TOKEN);
         }
 
@@ -30,6 +30,18 @@ namespace GitLabUserMgmt
             if (string.IsNullOrEmpty(usernameToRemove))
             {
                 MessageBox.Show("Please enter a username.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            OWNER_USERNAME = OwnerTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(OWNER_USERNAME))
+            {
+                MessageBox.Show("Please enter a owner user.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            GITLAB_TOKEN = TokenTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(usernameToRemove))
+            {
+                MessageBox.Show("Please enter a valid Personal Access Token.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
