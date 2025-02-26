@@ -1,7 +1,7 @@
 <!-- home.component.html -->
 <form (ngSubmit)="onSubmit()" #gitlabForm="ngForm">
   <div class="row">
-    <label class="col-6" for="username">GitLab Username:</label>
+    <label class="col-6" for="username">GitLab User:</label>
     <div class="col-6">
       <input type="text" id="username" [(ngModel)]="username" name="username" required />
     </div>
@@ -14,8 +14,9 @@
   </div>
 </form>
 
-<button (click)="getProfile()">My Profile</button>
-<button (click)="getProjects()">My Projects</button>
+<button class="btn btn-warning" (click)="getProfile()">My Profile</button>
+<button class="btn btn-success" (click)="getProjects()">My Projects</button>
+<button class="btn btn-danger" (click)="removeUser()">Remove Permission</button>
 
 <div *ngIf="profile">
   <h2>{{ profile.name }}</h2>
@@ -26,3 +27,7 @@
 <ul *ngIf="projects">
   <li *ngFor="let project of projects">{{ project.name }}</li>  
 </ul>
+<h4>Remove User Log</h4>
+<textarea class="form-control" rows="5">
+  {{ removeLog }}
+</textarea>

@@ -15,6 +15,7 @@ export class HomeComponent {
   token: string = '';
   profile: any;
   projects: any;
+  removeLog: any;
 
   constructor(private gitlabService: GitlabService) {}
 
@@ -23,9 +24,9 @@ export class HomeComponent {
   }
 
   getProfile() {
-    this.gitlabService.getProfile(this.token).subscribe(
+    this.gitlabService.getProfile(this.token, this.username).subscribe(
       (data) => {
-        this.profile = data;
+        this.projects = data.projects;
         //alert(`Profile: ${JSON.stringify(data)}`);
       },
       (error) => {
@@ -36,5 +37,27 @@ export class HomeComponent {
 
   getProjects() {
     // Call the API for projects if needed
+    this.gitlabService.getProjects(this.token).subscribe(
+      (data) => {
+        this.profile = data;
+        //alert(`Profile: ${JSON.stringify(data)}`);
+      },
+      (error) => {
+        alert('Error fetching profile');
+      }
+    );
   }
+
+  removeUser() {
+    this.gitlabService.removeUser(this.token, this.username).subscribe(
+      (data) => {
+        this.removeLog = data;
+      },
+      (error) => {
+        alert('Error removing user');
+      }
+    );
+  }
+
 }
+
