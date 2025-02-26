@@ -49,8 +49,9 @@ export class HomeComponent {
   }
 
   removeUser() {
-    this.gitlabService.removeUser(this.token, this.username).subscribe(
-      (data) => {
+    //this.gitlabService.removeUser(this.token, this.username).subscribe(
+      this.gitlabService.getEventStream().subscribe(
+      (data: string) => {
         this.removeLog = data;
       },
       (error) => {

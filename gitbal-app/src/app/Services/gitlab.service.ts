@@ -24,4 +24,22 @@ export class GitlabService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete(`${this.apiUrl}/removeuser/${username}`, { headers });
   }
+  stream(): Observable<any> {
+    //const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.apiUrl}/stream`);
+  }
+  getEventStream(): Observable<any> {
+    return new Observable((observer) => {
+      const eventSource = new EventSource(`${this.apiUrl}/stream`); // Replace with your SSE endpoint
+
+      eventSource.onmessage = (event) => {
+        observer.next(event.data); // Send the data to the subscriber
+      };
+
+      eventSource.onerror = (error) => {
+        observer.error(error); // Handle any errors
+        eventSource.close(); // Close the connection if error occurs
+      };
+    });
+  }
 }
