@@ -5,6 +5,17 @@ using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", policy =>
+    {
+        policy.AllowAnyOrigin()  // Allows any origin
+              .AllowAnyHeader()  // Allows any header
+              .AllowAnyMethod(); // Allows any HTTP method
+    });
+});
+
 //enable built-in http loggin
 builder.Services.AddHttpLogging(logging =>
 {
@@ -70,6 +81,9 @@ builder.Services.AddRefitClient<IGitLabApi>()
 
 var app = builder.Build();
 
+
+// Enable CORS
+app.UseCors("AllowAllOrigins");
 
 // Configure the HTTP request pipeline.
 if (true || app.Environment.IsDevelopment())

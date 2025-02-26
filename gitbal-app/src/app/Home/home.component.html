@@ -1,0 +1,28 @@
+<!-- home.component.html -->
+<form (ngSubmit)="onSubmit()" #gitlabForm="ngForm">
+  <div class="row">
+    <label class="col-6" for="username">GitLab Username:</label>
+    <div class="col-6">
+      <input type="text" id="username" [(ngModel)]="username" name="username" required />
+    </div>
+  </div>
+  <div class="row">
+    <label class="col-6" for="password">GitLab Token:</label>
+    <div class="col-6">
+      <input type="password" id="password" [(ngModel)]="token" name="token" required />
+    </div>
+  </div>
+</form>
+
+<button (click)="getProfile()">My Profile</button>
+<button (click)="getProjects()">My Projects</button>
+
+<div *ngIf="profile">
+  <h2>{{ profile.name }}</h2>
+  <p>{{ profile.email }}</p>
+  <p>{{ profile.bio }}</p>
+</div>
+<h4>Projects</h4>
+<ul *ngIf="projects">
+  <li *ngFor="let project of projects">{{ project.name }}</li>  
+</ul>
