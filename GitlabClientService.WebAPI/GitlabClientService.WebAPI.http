@@ -1,0 +1,6 @@
+@GitlabClientService.WebAPI_HostAddress = http://localhost:5134
+
+GET {{GitlabClientService.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
