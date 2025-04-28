@@ -259,6 +259,32 @@ app.MapDelete("/removeuser/{username}", async (string username, HttpContext cont
 
     await writer.FlushAsync();
 });
+app.MapGet("/add-runner/{runner-tag}", async (HttpContext context, IGitLabApi gitLabApi) =>
+{
+    string? token = context.Request.Headers["Authorization"];
+    if (string.IsNullOrEmpty(token))
+    {
+        return Results.BadRequest("Authorization token is required");
+    }
+
+    if (!token.StartsWith("Bearer "))
+    {
+        token = $"Bearer {token}";
+    }
+
+    // Get page and per_page from query parameters, with default values
+    int page = int.TryParse(context.Request.Query["page"], out var parsedPage) ? parsedPage : 1;
+    int perPage = int.TryParse(context.Request.Query["per_page"], out var parsedPerPage) ? parsedPerPage : 10;
+
+    var projects = await gitLabApi.GetOwnedProjectsAsync(page, perPage, token);
+
+    return Results.Ok(new
+    {
+        page,
+        perPage,
+        projects
+    });
+});
 
 app.MapGet("/stream", async (HttpResponse response) =>
 {

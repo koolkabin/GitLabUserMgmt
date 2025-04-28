@@ -16,7 +16,9 @@
 
 <button class="btn btn-warning" (click)="getProfile()">My Profile</button>
 <button class="btn btn-success" (click)="getProjects()">My Projects</button>
+<br/>
 <button class="btn btn-danger" (click)="removeUser()">Remove Permission</button>
+<button class="btn btn-danger" (click)="testStream()">Test Stream</button>
 
 <div *ngIf="profile">
   <h2>{{ profile.name }}</h2>
